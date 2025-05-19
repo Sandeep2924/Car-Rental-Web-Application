@@ -1,0 +1,192 @@
+.testimonials-section {
+  background: #f4f4f4;
+  padding: 50px 0;
+}
+
+.all-testimonials {
+  display: flex;
+  justify-content: center; /* Center reviews horizontally */
+  align-items: center; /* Center reviews vertically */
+  gap: 30px; /* Adjust the gap between the reviews */
+}
+
+.all-testimonials__box {
+  position: relative;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Ensures the box takes up equal space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  text-align: center; /* Center text */
+  transition: transform 0.3s ease;
+}
+
+.all-testimonials__box.left {
+  margin-right: 20px; /* Space between the left and right review */
+}
+
+.all-testimonials__box.right {
+  margin-left: 20px; /* Space between the left and right review */
+}
+
+.quotes-icon {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 30px;
+  color: #888;
+}
+
+.testimonials-content__title h4 {
+  font-size: 54px;
+  color: #264653; /* Dark Blue */
+  text-align: center; /* Center the title text */
+}
+
+.testimonials-content__title h2 {
+  font-size: 46px;
+  color: #2a9d8f; /* Greenish Blue */
+  text-align: center; /* Center the title text */
+}
+
+.testimonials-content__title p {
+  font-size: 36px;
+  color: #f4a261; /* Light Orange */
+  text-align: center; /* Center the paragraph text */
+}
+
+.all-testimonials__box__name {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the name and location horizontally */
+  margin-top: 15px;
+}
+
+.all-testimonials__box__name__profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.all-testimonials__box__name h4 {
+  font-size: 18px;
+  color: #264653; /* Dark Blue */
+}
+
+.all-testimonials__box__name p {
+  font-size: 14px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .all-testimonials {
+    flex-direction: column;
+    align-items: center; /* Center testimonials on smaller screens */
+  }
+  .all-testimonials__box.left,
+  .all-testimonials__box.right {
+    margin: 0;
+    width: 100%;
+  }
+}
+.testimonials-section {
+  background: #f4f4f4;
+  padding: 50px 0;
+}
+
+.all-testimonials {
+  display: flex;
+  justify-content: center; /* Center reviews horizontally */
+  align-items: center; /* Center reviews vertically */
+  gap: 30px; /* Adjust the gap between the reviews */
+}
+
+.all-testimonials__box {
+  position: relative;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Ensures the box takes up equal space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  text-align: center; /* Center text */
+  transition: transform 0.3s ease;
+}
+
+.all-testimonials__box.left {
+  margin-right: 20px; /* Space between the left and right review */
+}
+
+.all-testimonials__box.right {
+  margin-left: 20px; /* Space between the left and right review */
+}
+
+.quotes-icon {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 30px;
+  color: #888;
+}
+
+.testimonials-content__title h4 {
+  font-size: 54px;
+  color: #264653; /* Dark Blue */
+  text-align: center; /* Center the title text */
+}
+
+.testimonials-content__title h2 {
+  font-size: 46px;
+  color: #2a9d8f; /* Greenish Blue */
+  text-align: center; /* Center the title text */
+}
+
+.testimonials-content__title p {
+  font-size: 36px;
+  color: #f4a261; /* Light Orange */
+  text-align: center; /* Center the paragraph text */
+}
+
+.all-testimonials__box__name {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the name and location horizontally */
+  margin-top: 15px;
+}
+
+.all-testimonials__box__name__profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.all-testimonials__box__name h4 {
+  font-size: 18px;
+  color: #264653; /* Dark Blue */
+}
+
+.all-testimonials__box__name p {
+  font-size: 14px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .all-testimonials {
+    flex-direction: column;
+    align-items: center; /* Center testimonials on smaller screens */
+  }
+  .all-testimonials__box.left,
+  .all-testimonials__box.right {
+    margin: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,175 @@
+/* CSS for Car Box Component */
+
+body {
+  background-color: #f4a261; /* Light orange as the background */
+  color: #264653; /* Charcoal for text */
+}
+
+.car-box-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #2a9d8f; /* Teal border */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #e9c46a; /* Yellow background */
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(42, 157, 143, 0.2); /* Teal shadow */
+}
+
+.car-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 60%;
+  height: 450px;
+}
+
+.loader {
+  position: absolute;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2a9d8f; /* Teal spinner */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.car-image-container img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  object-fit: contain;
+  display: none;
+}
+
+.car-description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 30px;
+  width: 40%;
+}
+
+.car-price {
+  font-size: 2em;
+  color: #e76f51; /* Red-orange for price highlight */
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  background-color: #264653; /* Charcoal background */
+  padding: 15px 25px;
+  border-radius: 5px;
+}
+
+.car-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.car-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff; /* White for clean contrast */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.3em;
+  border-left: 5px solid #2a9d8f; /* Teal accent */
+}
+
+.car-detail span:first-child {
+  font-weight: bold;
+  color: #264653; /* Charcoal for labels */
+}
+
+.car-detail span:last-child {
+  font-size: 1.5em;
+  color: #f4a261; /* Orange for values */
+}
+
+.reserve-button {
+  background-color: #2a9d8f; /* Teal button */
+  color: white;
+  padding: 20px 40px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s;
+  margin-top: 25px;
+  align-self: center;
+}
+
+.reserve-button:hover {
+  background-color: #264653; /* Charcoal hover */
+}
+
+/* Responsive Styles */
+
+/* On small screens (up to 768px) */
+@media (max-width: 768px) {
+  .car-box-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .car-image-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+  }
+
+  .car-description-container {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  .car-price {
+    font-size: 1.5em;
+    padding: 10px 20px;
+  }
+
+  .car-detail {
+    font-size: 1.1em;
+  }
+
+  .reserve-button {
+    font-size: 1.2em;
+    padding: 15px 30px;
+  }
+}
+
+/* On extra small screens (up to 480px) */
+@media (max-width: 480px) {
+  .car-price {
+    font-size: 1.2em;
+    padding: 8px 18px;
+  }
+
+  .car-detail {
+    font-size: 1em;
+  }
+
+  .reserve-button {
+    font-size: 1em;
+    padding: 12px 25px;
+  }
+}
