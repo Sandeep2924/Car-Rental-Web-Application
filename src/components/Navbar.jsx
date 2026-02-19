@@ -1,18 +1,23 @@
+// Navbar.js
+
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../images/logo/logo.png";
-import { useState } from "react";
 import "../dist/nav_style.css";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
-  const toggleNav = () => {
-    setNavOpen((prev) => !prev);
-  };
+  const toggleNav = () => setNavOpen(!navOpen);
+  const closeNav = () => setNavOpen(false);
 
-  const closeNav = () => {
-    setNavOpen(false);
-  };
+  useEffect(() => {
+    document.body.style.overflow = showLogin || showSignup ? "hidden" : "auto";
+  }, [showLogin, showSignup]);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -25,7 +30,6 @@ const Navbar = () => {
 
   return (
     <nav>
-      {/* Mobile Navbar */}
       <div className={`mobile-navbar ${navOpen ? "open-nav" : ""}`}>
         <div
           onClick={toggleNav}
@@ -38,29 +42,39 @@ const Navbar = () => {
           {navLinks.map(({ to, label }) => (
             <li key={to}>
               <NavLink
-                onClick={closeNav}
                 to={to}
-                activeClassName="active"
-                className="mobile-navbar__link"
+                onClick={closeNav}
+                className={({ isActive }) =>
+                  `mobile-navbar__link ${isActive ? "active" : ""}`
+                }
               >
                 {label}
               </NavLink>
             </li>
           ))}
         </ul>
-
-        {/* Buttons for Mobile */}
         <div className="mobile-navbar__buttons">
-          <Link to="/signin" className="navbar__btn navbar__btn--signin">
+          <button
+            className="navbar__btn navbar__btn--signin"
+            onClick={() => {
+              setShowLogin(true);
+              closeNav();
+            }}
+          >
             Sign In
-          </Link>
-          <Link to="/register" className="navbar__btn navbar__btn--register">
+          </button>
+          <button
+            className="navbar__btn navbar__btn--register"
+            onClick={() => {
+              setShowSignup(true);
+              closeNav();
+            }}
+          >
             Register
-          </Link>
+          </button>
         </div>
       </div>
 
-      {/* Desktop Navbar */}
       <div className="navbar">
         <div className="navbar__logo">
           <Link to="/" onClick={() => window.scrollTo(0, 0)}>
@@ -73,30 +87,36 @@ const Navbar = () => {
             <li key={to}>
               <NavLink
                 to={to}
-                className="navbar__link"
-                activeClassName="active"
+                className={({ isActive }) =>
+                  `navbar__link ${isActive ? "active" : ""}`
+                }
               >
                 {label}
               </NavLink>
             </li>
           ))}
         </ul>
-
-        {/* Buttons */}
         <div className="navbar__buttons">
-          <Link to="/signin" className="navbar__btn navbar__btn--signin">
+          <button
+            className="navbar__btn navbar__btn--signin"
+            onClick={() => setShowLogin(true)}
+          >
             Sign In
-          </Link>
-          <Link to="/register" className="navbar__btn navbar__btn--register">
+          </button>
+          <button
+            className="navbar__btn navbar__btn--register"
+            onClick={() => setShowSignup(true)}
+          >
             Register
-          </Link>
+          </button>
         </div>
-
-        {/* Mobile Hamburger Icon */}
         <div className="mobile-hamb" onClick={toggleNav} aria-label="Open menu">
           <i className="fas fa-bars"></i>
         </div>
       </div>
+
+      <Login isOpen={showLogin} onClose={() => setShowLogin(false)} />
+      <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} />
     </nav>
   );
 };
