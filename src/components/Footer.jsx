@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../dist/Footer_style.css";
 import { Helmet } from "react-helmet";
 // import "../dist/testimonials_style.css";
@@ -19,17 +18,37 @@ function Footer() {
               <span className="logo_name">Car Rental</span>
             </div>
             <div className="media-icons">
-              <a href="#">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#">
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
 
-              <a href="#">
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
                 <i className="fab fa-youtube"></i>
               </a>
             </div>
@@ -101,11 +120,11 @@ function Footer() {
         <div className="bottom-details">
           <div className="bottom_text">
             <span className="copyright_text">
-              Copyright © 2024 <a href="#"></a> All rights reserved
+              Copyright © 2024 Car Rental. All rights reserved
             </span>
             <span className="policy_terms">
-              <a href="#">Privacy policy</a>
-              <a href="#">Terms & condition</a>
+              <a href="/privacy">Privacy policy</a>
+              <a href="/terms">Terms & condition</a>
             </span>
           </div>
         </div>
