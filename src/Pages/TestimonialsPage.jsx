@@ -13,10 +13,7 @@ function TestimonialsPage() {
           <div className="container">
             <div className="text-content">
               <h2>Book a car by getting in touch with us</h2>
-              <span>
-                <i className="fa-solid fa-phone"></i>
-                <h3>+91 98765-43210</h3>
-              </span>
+              <span><i className="fa-solid fa-phone"></i><h3>+91 98765-43210</h3></span>
             </div>
           </div>
         </div>

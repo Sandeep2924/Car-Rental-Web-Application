@@ -5,23 +5,11 @@ import { useEffect, useState } from "react";
 
 function Hero() {
   const [goUp, setGoUp] = useState(false);
-
-  // Function to scroll to top
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const bookBtn = () => document.querySelector("#booking-section")?.scrollIntoView({ behavior: "smooth" });
 
-  // Function to scroll to the booking section
-  const bookBtn = () => {
-    document
-      .querySelector("#booking-section")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // Track the scroll position to show or hide the scroll-up button
   useEffect(() => {
-    const onPageScroll = () => {
-      setGoUp(window.pageYOffset > 600);
-    };
-
+    const onPageScroll = () => setGoUp(window.pageYOffset > 600);
     window.addEventListener("scroll", onPageScroll);
     return () => window.removeEventListener("scroll", onPageScroll);
   }, []);
@@ -29,49 +17,31 @@ function Hero() {
   return (
     <section id="home" className="hero-section">
       <div className="container">
-        <img className="bg-shape" src={BgShape} alt="background shape" />
+        <img className="bg-shape" src={BgShape} alt="" />
         <div className="hero-content">
           <div className="hero-content__text">
-            <h4>Discover Your Next Adventure</h4>
-            <h1>
-              Rent a Car, <span>Explore More</span>
-            </h1>
-            <p>
-              Ready for a road trip? Choose from our fleet of premium cars with
-              flexible pick-up options, unlimited miles, and unbeatable rates.
-            </p>
+            <div className="hero-badge"><i className="fa-solid fa-star"></i> India's #1 Car Rental</div>
+            <h1>Rent a Car,<br /><span>Own the Road</span></h1>
+            <p>Choose from our premium fleet — from city hatchbacks to luxury SUVs. Transparent pricing, zero hidden fees, and 24/7 support across India.</p>
             <div className="hero-content__text__btns">
-              <Link
-                onClick={bookBtn}
-                className="hero-content__text__btns__book-ride"
-                to="#"
-              >
-                Book Your Ride &nbsp;
-                <i className="fas fa-car-side"></i>{" "}
-                {/* Font Awesome car icon */}
+              <Link onClick={bookBtn} className="hero-content__text__btns__book-ride" to="#">
+                Book Your Ride &nbsp;<i className="fas fa-car-side"></i>
               </Link>
-              <Link
-                className="hero-content__text__btns__learn-more"
-                to="/about"
-              >
-                Learn More &nbsp;
-                <i className="fas fa-arrow-right"></i>{" "}
-                {/* Font Awesome right arrow icon */}
+              <Link className="hero-content__text__btns__learn-more" to="/about">
+                Learn More &nbsp;<i className="fas fa-arrow-right"></i>
               </Link>
             </div>
+            <div className="hero-stats">
+              <div className="hero-stat"><h3>25+</h3><p>Vehicle Models</p></div>
+              <div className="hero-stat"><h3>100+</h3><p>Locations</p></div>
+              <div className="hero-stat"><h3>50K+</h3><p>Happy Customers</p></div>
+            </div>
           </div>
-
-          {/* Car image */}
-          <img src={HeroCar} alt="car-img" className="hero-content__car-img" />
+          <img src={HeroCar} alt="premium car" className="hero-content__car-img" />
         </div>
       </div>
-
-      {/* Scroll-up button */}
-      <div
-        onClick={scrollToTop}
-        className={`scroll-up ${goUp ? "show-scroll" : ""}`}
-      >
-        <i className="fas fa-arrow-up"></i> {/* Font Awesome up arrow icon */}
+      <div onClick={scrollToTop} className={`scroll-up ${goUp ? "show-scroll" : ""}`}>
+        <i className="fas fa-arrow-up"></i>
       </div>
     </section>
   );

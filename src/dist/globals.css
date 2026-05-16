@@ -1,0 +1,81 @@
+/* ============================================
+   GLOBAL CSS INDEX - CENTRALIZED IMPORTS
+   ============================================
+   This file serves as the single source of truth
+   for all CSS imports, ensuring proper cascade
+   and avoiding duplication.
+*/
+
+/* 1. Design System & Variables */
+@import url('./_root.css');
+
+/* 2. Global Base Styles & Main Components */
+@import url('./styles.css');
+
+/* 3. Navigation Styles */
+@import url('./nav_style.css');
+
+/* 4. Authentication (Login/Signup) */
+@import url('./auth_style.css');
+
+/* 5. Car Components */
+@import url('./CarBox.css');
+
+/* 6. Page-Specific Styles */
+@import url('./Contact_style.css');
+@import url('./Model_style.css');
+@import url('./Team_style.css');
+@import url('./testimonials_style.css');
+@import url('./Footer_style.css');
+
+/* ============================================
+   UTILITY FIX OVERRIDES
+   ============================================
+   Additional rules to handle edge cases
+*/
+
+/* Remove duplicate book-banner definitions globally */
+/* All .book-banner styles are defined in Contact_style.css */
+
+/* Ensure smooth transitions across all components */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Fix modal stacking issues */
+.modal-overlay {
+  z-index: var(--z-overlay);
+}
+
+.modal-overlay.active-modal {
+  z-index: var(--z-overlay);
+}
+
+/* Ensure navbar stays on top */
+nav,
+.navbar {
+  z-index: var(--z-sticky);
+}
+
+/* Responsive container fix */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Print media - hide unnecessary elements */
+@media print {
+  nav,
+  footer,
+  .mobile-hamb,
+  .mobile-navbar {
+    display: none !important;
+  }
+}

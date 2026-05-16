@@ -5,71 +5,44 @@ import Box3 from "../images/chooseUs/icon3.png";
 
 function ChooseUs() {
   return (
-    <>
-      <section className="choose-section">
-        <div className="container">
-          <div className="choose-container">
-            <img
-              className="choose-container__img"
-              src={MainImg}
-              alt="car_img"
-            />
-            <div className="text-container">
-              <div className="text-container__left">
-                <h4>Why Choose Us?</h4>
-                <h2>Unbeatable Deals That Save You More</h2>
-                <p>
-                  Explore incredible offers that bring you the best value
-                  without compromising on quality. We are committed to offering
-                  you amazing deals, ensuring that you get premium services and
-                  products at prices that make sense. Whether you're looking to
-                  rent or buy, our carefully crafted offers are designed to give
-                  you an unmatched experience. Don’t miss the chance to grab
-                  these fantastic savings today!
-                </p>
-                <a href="#home">
-                  Explore More &nbsp;
-                  <i className="fa-solid fa-angle-right"></i>
-                </a>
+    <section className="choose-section">
+      <div className="container">
+        <div className="choose-container">
+          <img className="choose-container__img" src={MainImg} alt="car" />
+          <div className="text-container">
+            <div className="text-container__left">
+              <h4>Why Choose Us?</h4>
+              <h2>Unbeatable Deals That Save You More</h2>
+              <p>We deliver exceptional car rental experiences with transparent pricing, a diverse fleet, and dedicated support — so every journey is stress-free and memorable.</p>
+              <a href="#home">Explore More &nbsp;<i className="fa-solid fa-angle-right"></i></a>
+            </div>
+            <div className="text-container__right">
+              <div className="text-container__right__box">
+                <img src={Box1} alt="road trips" />
+                <div className="text-container__right__box__text">
+                  <h4>Epic Road Trips</h4>
+                  <p>Premium vehicles built for scenic routes, mountain passes, and coast-to-coast adventures across India.</p>
+                </div>
               </div>
-              <div className="text-container__right">
-                <div className="text-container__right__box">
-                  <img src={Box1} alt="car-img" />
-                  <div className="text-container__right__box__text">
-                    <h4>Epic Road Trips</h4>
-                    <p>
-                      Elevate your road trip experience with our premium
-                      vehicles, perfect for exploring scenic routes across the
-                      country.
-                    </p>
-                  </div>
+              <div className="text-container__right__box">
+                <img src={Box2} alt="transparent pricing" />
+                <div className="text-container__right__box__text">
+                  <h4>Transparent Pricing</h4>
+                  <p>No hidden fees, no surprises. The price you see at booking is exactly what you pay at the counter.</p>
                 </div>
-                <div className="text-container__right__box">
-                  <img src={Box2} alt="coin-img" />
-                  <div className="text-container__right__box__text">
-                    <h4>Transparent Pricing</h4>
-                    <p>
-                      Say goodbye to hidden fees. With our clear, all-inclusive
-                      pricing, what you see is exactly what you pay.
-                    </p>
-                  </div>
-                </div>
-                <div className="text-container__right__box">
-                  <img src={Box3} alt="coin-img" />
-                  <div className="text-container__right__box__text">
-                    <h4>100% Transparent Costs</h4>
-                    <p>
-                      No surprises, no hidden fees. Enjoy complete transparency
-                      with every booking and experience stress-free pricing.
-                    </p>
-                  </div>
+              </div>
+              <div className="text-container__right__box">
+                <img src={Box3} alt="24/7 support" />
+                <div className="text-container__right__box__text">
+                  <h4>24/7 Support</h4>
+                  <p>Our dedicated team is available around the clock to assist with any issue on the road.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 

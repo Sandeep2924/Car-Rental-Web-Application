@@ -3,25 +3,18 @@ import Img2 from "../images/download/googleapp.svg";
 
 function Download() {
   return (
-    <>
-      <section className="download-section">
-        <div className="container">
-          <div className="download-text">
-            <h2>Download Our App for Exclusive Features</h2>
-            <p>
-              Unlock a world of benefits by downloading our app! Get access to
-              exclusive features, special offers, and seamless user experiences
-              that help you get the most out of our services. Start enjoying
-              convenience and top-notch services right at your fingertips.
-            </p>
-            <div className="download-text__btns">
-              <img alt="Google Play Store" src={Img2} />
-              <img alt="Apple App Store" src={Img1} />
-            </div>
+    <section className="download-section">
+      <div className="container">
+        <div className="download-text">
+          <h2>Download Our App for Exclusive Deals</h2>
+          <p>Get access to members-only offers, seamless booking, real-time tracking, and 24/7 support right from your phone. Available on iOS and Android.</p>
+          <div className="download-text__btns">
+            <img alt="Google Play Store" src={Img2} />
+            <img alt="Apple App Store" src={Img1} />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 

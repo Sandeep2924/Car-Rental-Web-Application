@@ -10,46 +10,27 @@ function About() {
   return (
     <>
       <section className="about-page">
-        <HeroPages name="About" />
+        <HeroPages name="About Us" />
         <div className="container">
           <div className="about-main">
-            <img className="about-main__img" src={AboutMain} alt="about-us" />
+            <img className="about-main__img" src={AboutMain} alt="about us" />
             <div className="about-main__text">
-              <h3>Welcome to Our Company</h3>
-              <h2>Your journey begins with us</h2>
-              <p>
-                At our core, we believe in delivering exceptional experiences
-                that make every journey memorable. Whether you're exploring
-                scenic routes or navigating city streets, our commitment to
-                quality and customer satisfaction drives everything we do.
-              </p>
-              <p>
-                With a diverse fleet of vehicles, a growing network of rental
-                outlets, and dedicated repair services, we ensure a seamless
-                experience from start to finish. Trust us to be your partner in
-                every adventure.
-              </p>
+              <h3>Welcome to ZoomCarz</h3>
+              <h2>Your Journey Begins With Us</h2>
+              <p>At our core, we believe in delivering exceptional experiences that make every journey memorable. Whether you're exploring scenic routes or navigating city streets, our commitment to quality and customer satisfaction drives everything we do.</p>
+              <p>With a diverse fleet of vehicles, a growing network of rental outlets across India, and dedicated 24/7 support, we ensure a seamless experience from booking to drop-off.</p>
               <div className="about-main__text__icons">
                 <div className="about-main__text__icons__box">
-                  <img src={Box1} alt="car-types-icon" />
-                  <span>
-                    <h4>25+</h4>
-                    <p>Vehicle Options</p>
-                  </span>
+                  <img src={Box1} alt="vehicles" />
+                  <span><h4>25+</h4><p>Vehicle Options</p></span>
                 </div>
                 <div className="about-main__text__icons__box">
-                  <img src={Box2} alt="rental-outlets-icon" />
-                  <span>
-                    <h4>100+</h4>
-                    <p>Rental Locations</p>
-                  </span>
+                  <img src={Box2} alt="locations" />
+                  <span><h4>100+</h4><p>Rental Locations</p></span>
                 </div>
                 <div className="about-main__text__icons__box">
-                  <img src={Box3} alt="repair-shop-icon" className="last-fk" />
-                  <span>
-                    <h4>80+</h4>
-                    <p>Service Centers</p>
-                  </span>
+                  <img src={Box3} alt="customers" />
+                  <span><h4>50K+</h4><p>Happy Customers</p></span>
                 </div>
               </div>
             </div>

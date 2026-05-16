@@ -1,134 +1,123 @@
-// Signup.js
-
 import React, { useState, useEffect } from "react";
+import "../dist/auth_style.css";
 
-const Signup = ({ isOpen, onClose }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const Signup = ({ isOpen, onClose, onSwitchToLogin }) => {
+  const [name, setName]               = useState("");
+  const [email, setEmail]             = useState("");
+  const [password, setPassword]       = useState("");
+  const [confirm, setConfirm]         = useState("");
+  const [showPass, setShowPass]       = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [error, setError]             = useState("");
+  const [success, setSuccess]         = useState(false);
+  const [loading, setLoading]         = useState(false);
 
   useEffect(() => {
+    if (!isOpen) return;
     const handleEsc = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen) { setName(""); setEmail(""); setPassword(""); setConfirm(""); setError(""); setSuccess(false); setLoading(false); setShowPass(false); setShowConfirm(false); }
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-    console.log("Signup:", email);
+    setError("");
+    if (!name.trim() || !email.trim() || !password || !confirm) { setError("All fields are required."); return; }
+    if (password.length < 6) { setError("Password must be at least 6 characters."); return; }
+    if (password !== confirm) { setError("Passwords do not match."); return; }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) { setError("Please enter a valid email address."); return; }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(true);
+      setTimeout(() => { onClose(); onSwitchToLogin && onSwitchToLogin(); }, 1800);
+    }, 800);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" style={{ zIndex: 2000 }} onClick={onClose}>
-      <div
-        className="modal-content"
-        style={modalStyle}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          style={closeBtnStyle}
-          aria-label="Close signup modal"
-        >
-          &times;
-        </button>
-        <h2 style={titleStyle}>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div style={inputGroupStyle}>
-            <label style={labelStyle}>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={inputStyle}
-              required
-            />
+    <div className="auth-modal-overlay" onClick={onClose}>
+      <div className="auth-modal-card" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="signup-title">
+
+        <div className="auth-modal-header">
+          <div className="auth-modal-header__icon auth-modal-header__icon--signup">
+            <i className="fa-solid fa-user-plus"></i>
           </div>
-          <div style={inputGroupStyle}>
-            <label style={labelStyle}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </div>
-          <div style={inputGroupStyle}>
-            <label style={labelStyle}>Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </div>
-          <button type="submit" style={submitBtnStyleRed}>
-            Register
-          </button>
-        </form>
+          <h2 id="signup-title">Create Account</h2>
+          <p>Join ZoomCarz and start booking your dream rides</p>
+          <button className="auth-modal-close" onClick={onClose} aria-label="Close">&times;</button>
+        </div>
+
+        <div className="auth-modal-body">
+          {error && (
+            <div className="auth-alert auth-alert--error">
+              <i className="fa-solid fa-circle-exclamation"></i> {error}
+            </div>
+          )}
+          {success && (
+            <div className="auth-alert auth-alert--success">
+              <i className="fa-solid fa-circle-check"></i> Account created! Redirecting to Sign In…
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="auth-field">
+              <label htmlFor="signup-name">Full Name</label>
+              <div className="auth-input-wrap">
+                <i className="fa-solid fa-user field-icon"></i>
+                <input id="signup-name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ravi Kumar" autoComplete="name" required />
+              </div>
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="signup-email">Email Address</label>
+              <div className="auth-input-wrap">
+                <i className="fa-regular fa-envelope field-icon"></i>
+                <input id="signup-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" autoComplete="email" required />
+              </div>
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="signup-password">Password</label>
+              <div className="auth-input-wrap">
+                <i className="fa-solid fa-lock field-icon"></i>
+                <input id="signup-password" type={showPass ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Minimum 6 characters" autoComplete="new-password" required />
+                <button type="button" className="auth-toggle-pass" onClick={() => setShowPass(!showPass)}>
+                  <i className={showPass ? "fa-regular fa-eye-slash" : "fa-regular fa-eye"}></i>
+                </button>
+              </div>
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="signup-confirm">Confirm Password</label>
+              <div className="auth-input-wrap">
+                <i className="fa-solid fa-shield-halved field-icon"></i>
+                <input id="signup-confirm" type={showConfirm ? "text" : "password"} value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Re-enter password" autoComplete="new-password" required />
+                <button type="button" className="auth-toggle-pass" onClick={() => setShowConfirm(!showConfirm)}>
+                  <i className={showConfirm ? "fa-regular fa-eye-slash" : "fa-regular fa-eye"}></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" className="auth-submit-btn auth-submit-btn--signup" disabled={loading || success}>
+              {loading ? <><i className="fa-solid fa-spinner fa-spin"></i> Creating Account…</> : <>Create Account &nbsp;<i className="fa-solid fa-arrow-right"></i></>}
+            </button>
+          </form>
+
+          <p className="auth-switch">
+            Already have an account?{" "}
+            <button type="button" onClick={() => { onClose(); onSwitchToLogin && onSwitchToLogin(); }}>Sign In</button>
+          </p>
+        </div>
       </div>
     </div>
   );
-};
-
-const modalStyle = {
-  background: "#fff",
-  borderRadius: "8px",
-  maxWidth: "400px",
-  margin: "100px auto",
-  padding: "2rem 2.5rem",
-  boxShadow: "0 8px 32px rgba(38,70,83,0.25)",
-  position: "relative",
-  fontFamily: "Poppins, sans-serif",
-};
-
-const closeBtnStyle = {
-  position: "absolute",
-  top: 10,
-  right: 10,
-  background: "none",
-  border: "none",
-  fontSize: "1.8rem",
-  color: "#e76f51",
-  cursor: "pointer",
-};
-
-const titleStyle = {
-  color: "#264653",
-  marginBottom: "2rem",
-  textAlign: "center",
-};
-
-const inputGroupStyle = { marginBottom: "1.5rem" };
-const labelStyle = { color: "#264653", fontWeight: 600, fontSize: "1.2rem" };
-const inputStyle = {
-  width: "100%",
-  padding: "0.8rem 1rem",
-  border: "1px solid #e9c46a",
-  borderRadius: "4px",
-  fontSize: "1.1rem",
-  marginTop: "0.5rem",
-};
-
-const submitBtnStyleRed = {
-  width: "100%",
-  background: "#e76f51",
-  color: "#fff",
-  border: "none",
-  borderRadius: "4px",
-  padding: "1rem 0",
-  fontWeight: 700,
-  fontSize: "1.2rem",
-  cursor: "pointer",
-  transition: "background 0.3s",
 };
 
 export default Signup;

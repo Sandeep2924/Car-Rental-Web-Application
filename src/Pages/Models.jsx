@@ -8,107 +8,35 @@ import CarImg4 from "../images/cars-big/bmw-box.png";
 import CarImg5 from "../images/cars-big/benz-box.png";
 import CarImg6 from "../images/cars-big/passat-box.png";
 import { Link } from "react-router-dom";
-import "../dist/Model_style.css";
+
+const cars = [
+  { name: "Audi A1",            image: CarImg1, price: 3700,  brand: "Audi",     seats: "5", transmission: "Manual",    fuel: "Diesel", topSpeed: "220 km/h", fuelCapacity: "45L" },
+  { name: "Golf 6",             image: CarImg2, price: 3000,  brand: "VW",       seats: "5", transmission: "Manual",    fuel: "Diesel", topSpeed: "200 km/h", fuelCapacity: "50L" },
+  { name: "Toyota Camry",       image: CarImg3, price: 2400,  brand: "Toyota",   seats: "5", transmission: "Automatic", fuel: "Petrol", topSpeed: "210 km/h", fuelCapacity: "55L" },
+  { name: "BMW 320",            image: CarImg4, price: 2900,  brand: "BMW",      seats: "5", transmission: "Automatic", fuel: "Diesel", topSpeed: "230 km/h", fuelCapacity: "60L" },
+  { name: "Mercedes Benz GLK",  image: CarImg5, price: 4100,  brand: "Mercedes", seats: "5", transmission: "Automatic", fuel: "Diesel", topSpeed: "240 km/h", fuelCapacity: "65L" },
+  { name: "VW Passat",          image: CarImg6, price: 2000,  brand: "VW",       seats: "5", transmission: "Manual",    fuel: "Diesel", topSpeed: "190 km/h", fuelCapacity: "50L" },
+];
 
 function Models() {
-  const cars = [
-    {
-      name: "Audi A1",
-      image: CarImg1,
-      price: 3700,
-      brand: "Audi",
-      seats: "4/5",
-      transmission: "Manual",
-      fuel: "Diesel",
-      topSpeed: "220 km/h",
-      fuelCapacity: "45L",
-    },
-    {
-      name: "Golf 6",
-      image: CarImg2,
-      price: 3000,
-      brand: "VW",
-      seats: "4/5",
-      transmission: "Manual",
-      fuel: "Diesel",
-      topSpeed: "200 km/h",
-      fuelCapacity: "50L",
-    },
-    {
-      name: "Toyota Camry",
-      image: CarImg3,
-      price: 2400,
-      brand: "Toyota",
-      seats: "4/5",
-      transmission: "Automatic",
-      fuel: "Petrol",
-      topSpeed: "210 km/h",
-      fuelCapacity: "55L",
-    },
-    {
-      name: "BMW 320",
-      image: CarImg4,
-      price: 2900,
-      brand: "BMW",
-      seats: "4/5",
-      transmission: "Automatic",
-      fuel: "Diesel",
-      topSpeed: "230 km/h",
-      fuelCapacity: "60L",
-    },
-    {
-      name: "Mercedes Benz GLK",
-      image: CarImg5,
-      price: 4100,
-      brand: "Mercedes",
-      seats: "4/5",
-      transmission: "Automatic",
-      fuel: "Diesel",
-      topSpeed: "240 km/h",
-      fuelCapacity: "65L",
-    },
-    {
-      name: "VW Passat",
-      image: CarImg6,
-      price: 2000,
-      brand: "VW",
-      seats: "4/5",
-      transmission: "Manual",
-      fuel: "Diesel",
-      topSpeed: "190 km/h",
-      fuelCapacity: "50L",
-    },
-  ];
-
   const [currentCarIndex, setCurrentCarIndex] = useState(0);
   const [visibleCars, setVisibleCars] = useState([0, 1, 2]);
 
-  // Auto-change the car every 5 seconds
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const nextIndex = (currentCarIndex + 1) % cars.length;
-      setCurrentCarIndex(nextIndex);
-      setVisibleCars([
-        nextIndex,
-        (nextIndex + 1) % cars.length,
-        (nextIndex + 2) % cars.length,
-      ]);
-    }, 5000); // Change car every 5 seconds
+    const iv = setInterval(() => {
+      const next = (currentCarIndex + 1) % cars.length;
+      setCurrentCarIndex(next);
+      setVisibleCars([next, (next+1)%cars.length, (next+2)%cars.length]);
+    }, 5000);
+    return () => clearInterval(iv);
+  }, [currentCarIndex]);
 
-    return () => clearInterval(intervalId); // Clean up the interval on component unmount
-  }, [currentCarIndex, cars.length]);
-
-  const handleCarChange = (direction) => {
-    let nextIndex =
-      direction === "next" ? currentCarIndex + 1 : currentCarIndex - 1;
-    if (nextIndex < 0) nextIndex = cars.length - 1;
-    if (nextIndex >= cars.length) nextIndex = 0;
-    setCurrentCarIndex(nextIndex);
-    setVisibleCars([
-      nextIndex,
-      (nextIndex + 1) % cars.length,
-      (nextIndex + 2) % cars.length,
-    ]);
+  const handleCarChange = (dir) => {
+    let next = dir === "next" ? currentCarIndex + 1 : currentCarIndex - 1;
+    if (next < 0) next = cars.length - 1;
+    if (next >= cars.length) next = 0;
+    setCurrentCarIndex(next);
+    setVisibleCars([next, (next+1)%cars.length, (next+2)%cars.length]);
   };
 
   return (
@@ -123,54 +51,30 @@ function Models() {
                 <div className="models-div__box" key={index}>
                   <div className="models-div__box__img">
                     <img src={car.image} alt={car.name} />
-                    <div className="models-div__box__descr">
-                      <div className="models-div__box__descr__name-price">
-                        <div className="models-div__box__descr__name-price__name">
-                          <p>{car.name}</p>
-                          <span>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                          </span>
-                        </div>
-                        <div className="models-div__box__descr__name-price__price">
-                          <h4>₹{car.price}</h4>
-                          <p>per day</p>
-                        </div>
-                      </div>
-                      <div className="car-details">
+                  </div>
+                  <div className="models-div__box__descr">
+                    <div className="models-div__box__descr__name-price">
+                      <div className="models-div__box__descr__name-price__name">
+                        <p>{car.name}</p>
                         <span>
-                          <i className="fa-solid fa-car-side"></i> &nbsp;{" "}
-                          {car.brand}
-                        </span>
-                        <span className="right-aligned">
-                          {car.seats} &nbsp;{" "}
-                          <i className="fa-solid fa-car-side"></i>
-                        </span>
-                        <span>
-                          <i className="fa-solid fa-cogs"></i> &nbsp;{" "}
-                          {car.transmission}
-                        </span>
-                        <span className="right-aligned">
-                          <i className="fa-solid fa-gas-pump"></i> {car.fuel}{" "}
-                          &nbsp;
-                        </span>
-                        <span>
-                          <i className="fa-solid fa-tachometer-alt"></i> Top
-                          Speed: {car.topSpeed}
-                        </span>
-                        <span className="right-aligned">
-                          <i className="fa-solid fa-gas-pump"></i> Fuel
-                          Capacity: {car.fuelCapacity} &nbsp;
+                          {[...Array(5)].map((_, i) => <i key={i} className="fa-solid fa-star"></i>)}
                         </span>
                       </div>
-                      <div className="models-div__box__descr__name-price__btn">
-                        <Link onClick={() => window.scrollTo(0, 0)} to="/">
-                          Book Ride
-                        </Link>
+                      <div className="models-div__box__descr__name-price__price">
+                        <h4>₹{car.price}</h4>
+                        <p>per day</p>
                       </div>
+                    </div>
+                    <div className="car-details">
+                      <span><i className="fa-solid fa-car-side"></i> {car.brand}</span>
+                      <span className="right-aligned">{car.seats} Seats</span>
+                      <span><i className="fa-solid fa-cogs"></i> {car.transmission}</span>
+                      <span className="right-aligned"><i className="fa-solid fa-gas-pump"></i> {car.fuel}</span>
+                      <span><i className="fa-solid fa-tachometer-alt"></i> {car.topSpeed}</span>
+                      <span className="right-aligned"><i className="fa-solid fa-gas-pump"></i> {car.fuelCapacity}</span>
+                    </div>
+                    <div className="models-div__box__descr__name-price__btn">
+                      <Link onClick={() => window.scrollTo(0,0)} to="/">Book Ride</Link>
                     </div>
                   </div>
                 </div>
@@ -178,8 +82,8 @@ function Models() {
             })}
           </div>
           <div className="carousel-controls">
-            <button onClick={() => handleCarChange("prev")}>Previous</button>
-            <button onClick={() => handleCarChange("next")}>Next</button>
+            <button onClick={() => handleCarChange("prev")}><i className="fa-solid fa-arrow-left"></i> &nbsp;Previous</button>
+            <button onClick={() => handleCarChange("next")}>Next&nbsp; <i className="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
         <div className="book-banner">
@@ -187,10 +91,7 @@ function Models() {
           <div className="container">
             <div className="text-content">
               <h2>Book a car by getting in touch with us</h2>
-              <span>
-                <i className="fa-solid fa-phone"></i>
-                <h3>+91 98765-43210</h3>
-              </span>
+              <span><i className="fa-solid fa-phone"></i><h3>+91 98765-43210</h3></span>
             </div>
           </div>
         </div>
